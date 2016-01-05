@@ -40,6 +40,8 @@ public class RepositoryConfig {
 	private String hibernateShowSql;
 	@Value("${hibernate.hbm2ddl.auto}")
 	private String hibernateHbm2ddlAuto;
+	@Value("${hibernate.cache.use_second_level_cache}")
+	private String enable2ndCache;
 
 	@Bean
 	public DataSource getDataSource() {
@@ -101,6 +103,7 @@ public class RepositoryConfig {
 		properties.put("hibernate.dialect", hibernateDialect);
 		properties.put("hibernate.show_sql", hibernateShowSql);
 		properties.put("hibernate.hbm2ddl.auto", hibernateHbm2ddlAuto);
+		properties.put("hibernate.cache.use_second_level_cache", enable2ndCache);
 		return properties;
 	}
 }

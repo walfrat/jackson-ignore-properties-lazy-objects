@@ -50,7 +50,6 @@ public class UserTest {
 
 	@Test
 	public void testSerialize() throws JsonProcessingException {
-		entityManager.unwrap(Session.class).getSessionFactory().getCache().evictAllRegions();
 		User user = userService.read(userId);
 		user.getManager().getId();
 		String value = mapper.writeValueAsString(user);
