@@ -22,6 +22,11 @@ public class User {
 	@ManyToOne(fetch=FetchType.LAZY, optional=true)
 	@JoinColumn(name="manager_id", nullable=true)
 	private User manager;
+	
+	@JsonIgnoreProperties("address")
+	@ManyToOne(fetch=FetchType.EAGER, optional=true)
+	@JoinColumn(name="another_manager_id", nullable=true)
+	private User anotherManager;
 
 	public User() {
 	}
@@ -68,6 +73,15 @@ public class User {
 	public void setManager(User manager) {
 		this.manager = manager;
 	}
+
+	public User getAnotherManager() {
+		return anotherManager;
+	}
+
+	public void setAnotherManager(User anotherManager) {
+		this.anotherManager = anotherManager;
+	}
+	
 	
 	
 }

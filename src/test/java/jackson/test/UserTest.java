@@ -37,14 +37,16 @@ public class UserTest {
 	static Integer userId;
 
 	@Test
-	public void init() {
+	public void init() throws JsonProcessingException {
 		User manager = new User(null, "manager", "ADDRESS THAT SHOULD NOT BE SHOWN");
 		userService.create(manager);
+		User anotherManager = new User(null, "eager manager", "ANOTHER ADDRESS THAT SHOULD NOT BE SHOWN");
+		userService.create(anotherManager);
 		User user = new User(null, "user", "address");
 		user.setManager(manager);
+		user.setAnotherManager(anotherManager);
 		userService.create(user);
 		userId = user.getId();
-		
 
 	}
 
@@ -53,6 +55,7 @@ public class UserTest {
 		User user = userService.read(userId);
 		user.getManager().getId();
 		String value = mapper.writeValueAsString(user);
+		System.err.println("testSerialize----------(lazyLoaded relation)");
 		System.err.println(value);
 	}
 }
